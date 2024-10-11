@@ -225,9 +225,9 @@ namespace BookRentalManagementSystem_V2
 
 
 
-        public void UpdateBook()
+        public void UpdateBook(string id)
         {
-
+            bool avibook = checkbook( id);
 
         }
 
