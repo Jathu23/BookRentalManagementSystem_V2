@@ -12,13 +12,65 @@ namespace BookRentalManagementSystem_V1
     {
         static void Main(string[] args)
         {
-            var Db = new BookRepository();
-            //Db.createDataBase();
-           Db.getbyid("BOOK_001");
+            Startpogram();
 
 
         }
 
-        
+        static void Startpogram()
+        {
+            var bookmanage = new BookRepository();
+            bool exitstatus = false;
+
+            while (!exitstatus)
+            {
+                Console.WriteLine("Book Rental Management System:");
+                Console.WriteLine("1. Add a Book");
+                Console.WriteLine("2. View All Books");
+                Console.WriteLine("3. Update a Book");
+                Console.WriteLine("4. Delete a Book");
+                Console.WriteLine("5. showbooks");
+                Console.WriteLine("6. Exit");
+                Console.WriteLine("Choose an option:");
+
+                string option = Console.ReadLine();
+
+                switch (option)
+                {
+                    case "1":
+                        Console.Clear();
+                        bookmanage.CreateBook();
+                        break;
+                    case "2":
+                        Console.Clear();
+                        Console.WriteLine("Enter Book Id");
+                        string id =  Console.ReadLine();
+                        bookmanage.getbyid(id);
+                        break;
+                    //case "3":
+                    //    Console.Clear();
+                    //    bookmanage.UpdateBook();
+                    //    break;
+                    //case "4":
+                    //    Console.Clear();
+                    //    bookmanage.DeleteBook();
+                    //    break;
+                    case "5":
+                        Console.Clear();
+                        bookmanage.showbooks();
+                        break;
+                    case "6":
+                        exitstatus = true;
+                        break;
+
+
+                }
+
+            }
+
+
+        }
+
+
     }
 }

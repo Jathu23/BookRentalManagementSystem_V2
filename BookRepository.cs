@@ -121,12 +121,47 @@ namespace BookRentalManagementSystem_V2
             return false;
             
         }
+
         public void UpdateBook()
         {
 
+
+        }
+        public void showbooks()
+        {
+            try
+            {
+                using (var connection = new SqliteConnection(connectionstring))
+                {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = @"SELECT * FROM BOOKS ";
+                    var reader = command.ExecuteReader();
+
+
+
+                    if (!reader.Read())
+                    {
+                        Console.WriteLine("No books ");
+
+                    }
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"BookId: {reader["BookId"]}, Title: {reader["Title"]}, Author: {reader["Author"]}, RentalPrice: {reader["RentalPrice"]}");
+                    }
+                   
+                   
+
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
         }
 
-
+       
 
 
 
