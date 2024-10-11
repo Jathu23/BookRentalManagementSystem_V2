@@ -26,7 +26,7 @@ namespace BookRentalManagementSystem_V1
             {
                 Console.WriteLine("Book Rental Management System:");
                 Console.WriteLine("1. Add a Book");
-                Console.WriteLine("2. View All Books");
+                Console.WriteLine("2. Get book by id");
                 Console.WriteLine("3. Update a Book");
                 Console.WriteLine("4. Delete a Book");
                 Console.WriteLine("5. showbooks");
