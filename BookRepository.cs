@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -85,6 +86,46 @@ namespace BookRentalManagementSystem_V2
            
 
         }
+
+
+        public bool getbyid(string id)
+        {
+            try
+            {
+                using (var connection = new SqliteConnection(connectionstring))
+                {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = @"SELECT * FROM BOOKS WHERE BookId == @ID";
+                    command.Parameters.AddWithValue("ID",id);
+                    var reader = command.ExecuteReader();
+
+                    if (reader.Read()) 
+                    {
+                        //return true;
+                        Console.WriteLine($"BookId: {reader["BookId"]}, Title: {reader["Title"]}, Author: {reader["Author"]}, RentalPrice: {reader["RentalPrice"]}");
+                    }
+                    else
+                    {
+                        //return false;
+                        Console.WriteLine("No book found");
+                    }
+
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                    
+            }
+            return false;
+            
+        }
+        public void UpdateBook()
+        {
+
+        }
+
 
 
 

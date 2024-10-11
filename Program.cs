@@ -14,7 +14,7 @@ namespace BookRentalManagementSystem_V1
         {
             var Db = new BookRepository();
             //Db.createDataBase();
-           Db.CreateBook();
+           Db.getbyid("BOOK_001");
 
 
         }
