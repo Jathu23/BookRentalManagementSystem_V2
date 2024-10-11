@@ -51,10 +51,12 @@ namespace BookRentalManagementSystem_V1
                     //    Console.Clear();
                     //    bookmanage.UpdateBook();
                     //    break;
-                    //case "4":
-                    //    Console.Clear();
-                    //    bookmanage.DeleteBook();
-                    //    break;
+                    case "4":
+                        Console.Clear();
+                        Console.WriteLine("Enter Book Id fo delete");
+                        string did = Console.ReadLine();
+                        bookmanage.deletebook(did);
+                        break;
                     case "5":
                         Console.Clear();
                         bookmanage.showbooks();

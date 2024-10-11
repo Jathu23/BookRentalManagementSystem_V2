@@ -88,7 +88,7 @@ namespace BookRentalManagementSystem_V2
         }
 
 
-        public bool getbyid(string id)
+        public void getbyid(string id)
         {
             try
             {
@@ -102,12 +102,12 @@ namespace BookRentalManagementSystem_V2
 
                     if (reader.Read()) 
                     {
-                        //return true;
+                        
                         Console.WriteLine($"BookId: {reader["BookId"]}, Title: {reader["Title"]}, Author: {reader["Author"]}, RentalPrice: {reader["RentalPrice"]}");
                     }
                     else
                     {
-                        //return false;
+                       
                         Console.WriteLine("No book found");
                     }
 
@@ -118,15 +118,45 @@ namespace BookRentalManagementSystem_V2
                 Console.WriteLine(ex.Message);
                     
             }
-            return false;
+           
             
         }
 
-        public void UpdateBook()
+        public bool checkbook(string id)
         {
+            try
+            {
+                using (var connection = new SqliteConnection(connectionstring))
+                {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = @"SELECT * FROM BOOKS WHERE BookId == @ID";
+                    command.Parameters.AddWithValue("ID", id);
+                    var reader = command.ExecuteReader();
 
+                    if (reader.Read())
+                    {
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+            return false;
 
         }
+
+
         public void showbooks()
         {
             try
@@ -161,10 +191,45 @@ namespace BookRentalManagementSystem_V2
             }
         }
 
-       
+        public void deletebook(string id)
+        {
+            try
+            {
+                using (var connection = new SqliteConnection(connectionstring))
+                {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = @"DELETE  FROM BOOKS WHERE BookId == @ID";
+                    command.Parameters.AddWithValue("ID", id);
+                 var row =   command.ExecuteNonQuery();
+
+                    if (row != 0)
+                    {
+                        Console.WriteLine("Book deleted");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("book not found");
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+        }
 
 
 
+        public void UpdateBook()
+        {
+
+
+        }
 
 
 
