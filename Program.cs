@@ -13,7 +13,8 @@ namespace BookRentalManagementSystem_V1
         static void Main(string[] args)
         {
             var Db = new BookRepository();
-            Db.createDataBase();
+            //Db.createDataBase();
+           Db.CreateBook();
 
 
         }
